@@ -18,7 +18,7 @@ class Button extends React.PureComponent {
   render() {
 
     return (
-      <button onClick={this.handleClick}>
+      <button onClick={this.handleClick} type="button">
         {this.props.children}
       </button>
     );

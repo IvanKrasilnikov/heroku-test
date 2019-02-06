@@ -4,18 +4,30 @@ import Button from "../../components/button/button";
 import axios from "axios";
 
 import bearFace from "../../images/bearFace@2x.png";
+import JogsEmpty from '../../components/jogs-empty/jogs-empty';
+import JogCreate from '../../components/jog-create/jog-create';
 
 class JogsPage extends React.Component {
   static propTypes = {};
 
   state = {
-    hasToken: this.wasWithToken()
+    hasToken: this.wasWithToken(),
+    showCreateJogPopup: false,
   };
 
   // ;;events --------------------------------------------------------------------------------------
 
   handleStartClick = () => {
     this.getToken();
+  };
+
+  handleJogsEmptyButtonClick = () => {
+    this.showCreateJogPopup();
+  };
+
+  handleCreateButtonClick = () => {
+    // REQUEST TO JOGS LIST
+    this.hideCreateJogPopup();
   };
 
   // ;;compute -------------------------------------------------------------------------------------
@@ -41,6 +53,16 @@ class JogsPage extends React.Component {
     return !!localStorage.getItem("token");
   }
 
+  // ;;inner ---------------------------------------------------------------------------------------
+
+  showCreateJogPopup() {
+    this.setState({ showCreateJogPopup: true });
+  }
+
+  hideCreateJogPopup() {
+    this.setState({ showCreateJogPopup: false });
+  }
+
   // ;;render --------------------------------------------------------------------------------------
 
   renderStartPopup() {
@@ -54,12 +76,22 @@ class JogsPage extends React.Component {
     );
   }
 
-  renderJogsContent() {
-    if (!this.state.hasToken) return null;
+  renderCreateJogPopup() {
+    if (!this.state.showCreateJogPopup) return null;
 
     return (
       <div className="start-page__content">
+        <JogCreate handleButtonClick={this.handleCreateButtonClick} />
+      </div>
+    );
+  }
 
+  renderJogsContent() {
+    if (!this.state.hasToken || this.state.showCreateJogPopup) return null;
+
+    return (
+      <div className="start-page__content">
+        <JogsEmpty handleButtonClick={this.handleJogsEmptyButtonClick} />
       </div>
     );
   }
@@ -68,6 +100,7 @@ class JogsPage extends React.Component {
     return (
       <div className="start-page">
         {this.renderStartPopup()}
+        {this.renderCreateJogPopup()}
         {this.renderJogsContent()}
       </div>
     );
