@@ -1,0 +1,12 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.main__header {
+  flex-shrink: 0;
+}
+
+.main__content {
+  flex-grow: 1;
+}
