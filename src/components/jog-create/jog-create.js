@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
+// Components
 import Button from "../button/button";
 
 class JogCreate extends React.Component {
@@ -37,13 +38,19 @@ class JogCreate extends React.Component {
 
   createJog() {
     axios
-      .post("/v1/data/jog", {
-        date: this.state.distance,
+      .post("/api/v1/data/jog", {
+        date: this.state.date,
         time: this.state.time,
-        distance: this.state.date
+        distance: this.state.distance
       })
       .then(() => {
         this.props.handleButtonClick();
+
+        return axios.get("/api/v1/data/sync");
+      })
+      .then(response => {
+        // UPDATE JOGS LIST
+        console.log(response);
       });
   }
 
@@ -61,23 +68,26 @@ class JogCreate extends React.Component {
         <label>
           <span className="jog-create__label-title">Distance</span>
           <input
-            type="text"
+            type="number"
             value={this.state.distance}
             onChange={this.handleDistanceChange}
+            min={0.1}
+            step={0.1}
           />
         </label>
         <label>
           <span className="jog-create__label-title">Time</span>
           <input
-            type="text"
+            type="number"
             value={this.state.time}
             onChange={this.handleTimeChange}
+            min={1}
           />
         </label>
         <label>
           <span className="jog-create__label-title">Date</span>
           <input
-            type="text"
+            type="date"
             value={this.state.date}
             onChange={this.handleDateChange}
           />

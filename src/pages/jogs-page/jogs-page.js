@@ -1,18 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../../components/button/button";
 import axios from "axios";
 
+// Images
 import bearFace from "../../images/bearFace@2x.png";
-import JogsEmpty from '../../components/jogs-empty/jogs-empty';
-import JogCreate from '../../components/jog-create/jog-create';
+
+// Services
+import setAuthorization from "../../services/set-authorization";
+
+// Components
+import Button from "../../components/button/button";
+import JogsEmpty from "../../components/jogs-empty/jogs-empty";
+import JogCreate from "../../components/jog-create/jog-create";
 
 class JogsPage extends React.Component {
   static propTypes = {};
 
   state = {
-    hasToken: this.wasWithToken(),
-    showCreateJogPopup: false,
+    isNewUser: !this.hasToken(),
+    showCreateJogPopup: false
   };
 
   // ;;events --------------------------------------------------------------------------------------
@@ -26,34 +32,37 @@ class JogsPage extends React.Component {
   };
 
   handleCreateButtonClick = () => {
-    // REQUEST TO JOGS LIST
+    // UPDATE JOGS LIST
     this.hideCreateJogPopup();
   };
 
   // ;;compute -------------------------------------------------------------------------------------
 
-  getToken() {
-    if (this.state.hasToken) return;
-
-    axios
-      .post("/v1/auth/uuidLogin", {
-        uuid: "hello"
-      })
-      .then(response => {
-        const token = response.data.response.access_token;
-
-        localStorage.setItem("token", token);
-        this.setState({ hasToken: true });
-
-        axios.defaults.headers.common["Authorization"] = token;
-      });
-  }
-
-  wasWithToken() {
+  hasToken() {
     return !!localStorage.getItem("token");
   }
 
   // ;;inner ---------------------------------------------------------------------------------------
+
+  getJogs() {
+    axios.get("/api/v1/data/sync").then(response => {
+      console.log(response.data.response);
+    });
+  }
+
+  getToken() {
+    if (!this.state.isNewUser) return;
+
+    axios
+      .post("/api/v1/auth/uuidLogin", {
+        uuid: "hello"
+      })
+      .then(response => {
+        setAuthorization(response.data.response.access_token);
+
+        this.setState({ isNewUser: false });
+      });
+  }
 
   showCreateJogPopup() {
     this.setState({ showCreateJogPopup: true });
@@ -66,7 +75,7 @@ class JogsPage extends React.Component {
   // ;;render --------------------------------------------------------------------------------------
 
   renderStartPopup() {
-    if (this.state.hasToken) return null;
+    if (!this.state.isNewUser) return null;
 
     return (
       <div className="start-page__content start-page__content_popup">
@@ -86,22 +95,27 @@ class JogsPage extends React.Component {
     );
   }
 
-  renderJogsContent() {
-    if (!this.state.hasToken || this.state.showCreateJogPopup) return null;
+  renderJogsEmpty() {
+    if (this.state.isNewUser || this.state.showCreateJogPopup) return null;
 
-    return (
-      <div className="start-page__content">
-        <JogsEmpty handleButtonClick={this.handleJogsEmptyButtonClick} />
-      </div>
-    );
+    return <JogsEmpty handleButtonClick={this.handleJogsEmptyButtonClick} />;
+  }
+
+  renderJogsList() {
+    if (this.state.isNewUser || this.state.showCreateJogPopup) return null;
+
+    return <JogsEmpty handleButtonClick={this.handleJogsEmptyButtonClick} />;
   }
 
   render() {
     return (
-      <div className="start-page">
+      <div className="jogs-page">
         {this.renderStartPopup()}
         {this.renderCreateJogPopup()}
-        {this.renderJogsContent()}
+        <div className="jogs-page__content">
+          {this.renderJogsEmpty()}
+          {/*{this.renderJogsList()}*/}
+        </div>
       </div>
     );
   }
