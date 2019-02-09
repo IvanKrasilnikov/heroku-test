@@ -1,27 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import jogImage from "../../images/jog@2x.png";
+
 class Jog extends React.PureComponent {
 
-  static propTypes = {};
+  static propTypes = {
+    date: PropTypes.number,
+    distance: PropTypes.number,
+    time: PropTypes.number,
+  };
+
+  // ;;compute -------------------------------------------------------------------------------------
+
+  getSpeed() {
+    return this.props.distance / (this.props.time / 60);
+  }
+
+  // ;;render --------------------------------------------------------------------------------------
 
   render() {
-
     return (
       <div className="jog">
-        <img src="" alt="" />
+        <img src={jogImage} alt="jog icon" />
         <ul className="jog__info">
           <li className="jog__info-item jog__info-item_date">
-            date
+            {this.props.date}
           </li>
           <li className="jog__info-item">
-            speed
+            {this.getSpeed()} km/h
           </li>
           <li className="jog__info-item">
-            distance
+            {this.props.distance} km
           </li>
           <li className="jog__info-item">
-            time
+            {this.props.time} min
           </li>
         </ul>
       </div>
