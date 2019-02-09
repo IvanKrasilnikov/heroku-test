@@ -7,7 +7,7 @@ import Button from "../button/button";
 
 class JogCreate extends React.Component {
   static propTypes = {
-    handleButtonClick: PropTypes.func
+    handleUpdateJogsList: PropTypes.func,
   };
 
   state = {
@@ -36,22 +36,18 @@ class JogCreate extends React.Component {
 
   // ;;inner ---------------------------------------------------------------------------------------
 
-  createJog() {
-    axios
-      .post("/api/v1/data/jog", {
-        date: this.state.date,
-        time: this.state.time,
-        distance: this.state.distance
-      })
-      .then(() => {
-        this.props.handleButtonClick();
+  async createJog() {
+    await axios.post("/api/v1/data/jog", {
+      date: this.state.date,
+      time: this.state.time,
+      distance: this.state.distance
+    }, {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      }
+    });
 
-        return axios.get("/api/v1/data/sync");
-      })
-      .then(response => {
-        // UPDATE JOGS LIST
-        console.log(response);
-      });
+    this.props.handleUpdateJogsList();
   }
 
   changeInputValue(name, value) {
