@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 // Components
 import Button from "../../components/button/button";
@@ -8,7 +10,6 @@ import JogsEmpty from "../../components/jogs-empty/jogs-empty";
 import JogCreate from "../../components/jog-create/jog-create";
 import JogsList from "../../components/jogs-list/jogs-list";
 import Filter from "../../components/filter/filter";
-import { connect } from "react-redux";
 import Navigation from "../../components/navigation/navigation";
 
 class JogsPage extends React.Component {
@@ -201,4 +202,4 @@ const PreparedJogsPage = connect(state => ({
   isMenuShow: state.menu.show
 }))(JogsPage);
 
-export default PreparedJogsPage;
+export default withRouter(PreparedJogsPage);

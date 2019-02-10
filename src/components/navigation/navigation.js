@@ -27,12 +27,18 @@ class Navigation extends React.Component {
                 this.props.location.pathname === routes.jogs
             })}
           >
-            <Link to="/" className="navigation__list-link">
+            <Link to={routes.jogs} className="navigation__list-link">
               Jogs
             </Link>
           </li>
-          <li className="navigation__list-item">
-            <Link to="/" className="navigation__list-link">
+          <li
+            className={classNames({
+              "navigation__list-item": true,
+              "navigation__list-item_active":
+                this.props.location.pathname === routes.info
+            })}
+          >
+            <Link to={routes.info} className="navigation__list-link">
               Info
             </Link>
           </li>

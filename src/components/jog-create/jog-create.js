@@ -7,7 +7,7 @@ import Button from "../button/button";
 
 class JogCreate extends React.Component {
   static propTypes = {
-    handleClose: PropTypes.bool,
+    handleClose: PropTypes.func,
     handleUpdateJogs: PropTypes.func,
   };
 

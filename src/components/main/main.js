@@ -1,20 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import { hideMenu } from '../../redux/actions';
 
 // Configs
-import { sizes } from '../../configs';
+import { routes, sizes } from '../../configs';
 
 // Pages
 import JogsPage from "../../pages/jogs-page/jogs-page";
+import InfoPage from '../../pages/info-page/info-page';
 
 // Components
 import Header from "../header/header";
-
-const About = () => <h2>About</h2>;
-const Users = () => <h2>Users</h2>;
 
 class Main extends React.Component {
   static propTypes = {
@@ -62,12 +60,8 @@ class Main extends React.Component {
           <Header />
         </div>
         <div className="main__content">
-          <Route path="/" exact>
-            <JogsPage isDesktop={this.state.isDesktop} />
-          </Route>
-
-          <Route path="/about/" component={About} />
-          <Route path="/users/" component={Users} />
+          <Route path={routes.jogs} exact render={() => <JogsPage isDesktop={this.state.isDesktop} />} />
+          <Route path={routes.info} render={() => <InfoPage />} />
         </div>
       </div>
     );
@@ -78,4 +72,4 @@ const PreparedMain = connect(state => ({
   isMenuShow: state.menu.show
 }))(Main);
 
-export default PreparedMain;
+export default withRouter(PreparedMain);
