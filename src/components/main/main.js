@@ -13,6 +13,7 @@ import InfoPage from '../../pages/info-page/info-page';
 
 // Components
 import Header from "../header/header";
+import Navigation from "../../components/navigation/navigation";
 
 class Main extends React.Component {
   static propTypes = {
@@ -53,6 +54,16 @@ class Main extends React.Component {
 
   // ;;render --------------------------------------------------------------------------------------
 
+  renderMenuPopup() {
+    if (!this.props.isMenuShow) return null;
+
+    return (
+      <div className="main__menu-popup">
+        <Navigation isPopup />
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="main">
@@ -60,6 +71,7 @@ class Main extends React.Component {
           <Header />
         </div>
         <div className="main__content">
+          {this.renderMenuPopup()}
           <Route path={routes.jogs} exact render={() => <JogsPage isDesktop={this.state.isDesktop} />} />
           <Route path={routes.info} render={() => <InfoPage />} />
         </div>

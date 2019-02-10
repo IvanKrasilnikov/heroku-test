@@ -10,7 +10,6 @@ import JogsEmpty from "../../components/jogs-empty/jogs-empty";
 import JogCreate from "../../components/jog-create/jog-create";
 import JogsList from "../../components/jogs-list/jogs-list";
 import Filter from "../../components/filter/filter";
-import Navigation from "../../components/navigation/navigation";
 
 class JogsPage extends React.Component {
   static propTypes = {
@@ -115,16 +114,6 @@ class JogsPage extends React.Component {
 
   // ;;render --------------------------------------------------------------------------------------
 
-  renderMenuPopup() {
-    if (!this.props.isMenuShow) return null;
-
-    return (
-      <div className="jogs-page__content jogs-page__content_menu-popup">
-        <Navigation isPopup />
-      </div>
-    );
-  }
-
   renderStartPopup() {
     if (!this.state.isNewUser) return null;
 
@@ -188,7 +177,6 @@ class JogsPage extends React.Component {
   render() {
     return (
       <div className="jogs-page">
-        {this.renderMenuPopup()}
         {this.renderStartPopup()}
         {this.renderCreateJogPopup()}
         {this.renderContent()}

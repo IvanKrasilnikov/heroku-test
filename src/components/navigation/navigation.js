@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+import { hideMenu } from '../../redux/actions';
 
 // Configs
 import { routes } from "../../configs";
@@ -10,6 +12,14 @@ class Navigation extends React.Component {
   static propTypes = {
     isPopup: PropTypes.bool
   };
+
+  // ;;events --------------------------------------------------------------------------------------
+
+  handleLinkClick = () => {
+    this.props.dispatch(hideMenu());
+  };
+
+  // ;;render --------------------------------------------------------------------------------------
 
   render() {
     return (
@@ -27,7 +37,7 @@ class Navigation extends React.Component {
                 this.props.location.pathname === routes.jogs
             })}
           >
-            <Link to={routes.jogs} className="navigation__list-link">
+            <Link to={routes.jogs} className="navigation__list-link" onClick={this.handleLinkClick}>
               Jogs
             </Link>
           </li>
@@ -38,12 +48,12 @@ class Navigation extends React.Component {
                 this.props.location.pathname === routes.info
             })}
           >
-            <Link to={routes.info} className="navigation__list-link">
+            <Link to={routes.info} className="navigation__list-link" onClick={this.handleLinkClick}>
               Info
             </Link>
           </li>
           <li className="navigation__list-item">
-            <Link to="/" className="navigation__list-link">
+            <Link to="/" className="navigation__list-link" onClick={this.handleLinkClick}>
               Contact us
             </Link>
           </li>
@@ -53,4 +63,4 @@ class Navigation extends React.Component {
   }
 }
 
-export default withRouter(Navigation);
+export default connect()(withRouter(Navigation));
