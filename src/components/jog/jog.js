@@ -13,8 +13,14 @@ class Jog extends React.PureComponent {
 
   // ;;compute -------------------------------------------------------------------------------------
 
+  getDate() {
+    const date = new Date(this.props.date * 1000);
+
+    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+  }
+
   getSpeed() {
-    return this.props.distance / (this.props.time / 60);
+    return Math.round((this.props.distance * 1000) / (this.props.time * 60));
   }
 
   // ;;render --------------------------------------------------------------------------------------
@@ -22,21 +28,28 @@ class Jog extends React.PureComponent {
   render() {
     return (
       <div className="jog">
-        <img src={jogImage} alt="jog icon" />
-        <ul className="jog__info">
-          <li className="jog__info-item jog__info-item_date">
-            {this.props.date}
-          </li>
-          <li className="jog__info-item">
-            {this.getSpeed()} km/h
-          </li>
-          <li className="jog__info-item">
-            {this.props.distance} km
-          </li>
-          <li className="jog__info-item">
-            {this.props.time} min
-          </li>
-        </ul>
+        <div className="jog__column">
+          <img className="jog__icon" src={jogImage} alt="jog icon" />
+        </div>
+        <div className="jog__column">
+          <ul className="jog__info">
+            <li className="jog__info-item jog__info-item_date">
+              {this.getDate()}
+            </li>
+            <li className="jog__info-item">
+              <span className="jog__info-item-title">Speed: </span>
+              {this.getSpeed()} m/sec
+            </li>
+            <li className="jog__info-item">
+              <span className="jog__info-item-title">Distance: </span>
+              {this.props.distance} km
+            </li>
+            <li className="jog__info-item">
+              <span className="jog__info-item-title">Time: </span>
+              {this.props.time} min
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }
