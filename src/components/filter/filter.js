@@ -9,7 +9,16 @@ class Filter extends React.Component {
 
     return (
       <div className="filter">
-        123
+        <div className="filter__content">
+          <label className="filter__field">
+            <span className="filter__label">Date from</span>
+            <input className="filter__input" type="date" />
+          </label>
+          <label className="filter__field">
+            <span className="filter__label">Date to</span>
+            <input className="filter__input" type="date" />
+          </label>
+        </div>
       </div>
     );
   }

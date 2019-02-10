@@ -1,0 +1,42 @@
+.filter {
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  background-color: $grey-6;
+}
+
+.filter__field:not(:last-child) {
+  margin-right: 35px;
+
+  @media (min-width: $desktop) {
+    margin-right: 45px;
+  }
+}
+
+.filter__label {
+  margin-right: 15px;
+  font-size: 13px;
+  color: $grey-7;
+}
+
+.filter__input {
+  margin: 0;
+  padding: 0;
+  border: 1px solid $grey-7;
+  border-radius: 10px;
+  height: 30px;
+  width: 72px;
+  display: inline-block;
+  background: none;
+  background-color: $white;
+  font-size: 13px;
+  font-family: inherit;
+  line-height: 1;
+  white-space: normal;
+  vertical-align: middle;
+  outline: 0;
+
+  &:focus {
+    outline: 0;
+  }
+}
