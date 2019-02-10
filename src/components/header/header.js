@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { toggleFilter, toggleMenu } from "../../redux/actions";
+import { hideMenu, showMenu, toggleFilter } from "../../redux/actions";
 
 // Configs
 import { routes } from "../../configs";
@@ -28,7 +28,7 @@ class Header extends React.Component {
   };
 
   handleMenuButtonClick = () => {
-    this.props.dispatch(toggleMenu());
+    this.props.dispatch(this.props.isMenuShow ? hideMenu() : showMenu());
   };
 
   // ;;compute -------------------------------------------------------------------------------------

@@ -58,5 +58,28 @@
 }
 
 .header__menu-button_active {
+  height: 21px;
+  width: 21px;
+  position: relative;
 
+  &::before,
+  &::after {
+    content: "";
+    border-radius: 1px;
+    height: 3px;
+    width: 23px;
+    display: block;
+    position: absolute;
+    bottom: 8px;
+    left: -1px;
+    background-color: $grey-5;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
 }

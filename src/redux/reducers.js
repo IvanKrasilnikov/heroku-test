@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { TOGGLE_FILTER, TOGGLE_MENU } from "./actions";
+import { TOGGLE_FILTER, SHOW_MENU, HIDE_MENU } from "./actions";
 
 function filter(state = { show: false }, action) {
   switch (action.type) {
@@ -15,10 +15,15 @@ function filter(state = { show: false }, action) {
 
 function menu(state = { show: false }, action) {
   switch (action.type) {
-  case TOGGLE_MENU:
+  case SHOW_MENU:
     return {
       ...state,
-      show: !state.show,
+      show: true,
+    };
+  case HIDE_MENU:
+    return {
+      ...state,
+      show: false,
     };
   default:
     return state;
