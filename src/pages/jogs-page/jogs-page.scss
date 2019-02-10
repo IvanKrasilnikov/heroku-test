@@ -1,3 +1,42 @@
+.jogs-page {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.jogs-page__content {
+  height: 100%;
+}
+
 .jogs-page__content_menu-popup {
-  padding: 110px 0;
+  padding: 110px 0 40px;
+}
+
+.jogs-page__content_start-popup {
+  @media (min-width: $desktop) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.jogs-page__start-popup {
+  padding: 390px 0 40px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-image: url(./images/bearFace@2x.png);
+  background-position: center 140px;
+  background-size: 150px auto;
+  background-repeat: no-repeat;
+
+  @media (min-width: $desktop) {
+    padding: 280px 0 40px;
+    height: auto;
+    width: 500px;
+    border-radius: 44px;
+    background-color: $pink;
+    background-image: url(./images/bearFaceInvert@2x.png);
+    background-position: center 75px;
+  }
 }

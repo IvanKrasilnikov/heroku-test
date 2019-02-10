@@ -2,9 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-// Images
-import bearFace from "../../images/bearFace@2x.png";
-
 // Components
 import Button from "../../components/button/button";
 import JogsEmpty from "../../components/jogs-empty/jogs-empty";
@@ -16,6 +13,7 @@ import Navigation from "../../components/navigation/navigation";
 
 class JogsPage extends React.Component {
   static propTypes = {
+    isDesktop: PropTypes.bool,
     isFilterShow: PropTypes.bool,
     isMenuShow: PropTypes.bool
   };
@@ -124,9 +122,10 @@ class JogsPage extends React.Component {
     if (!this.state.isNewUser) return null;
 
     return (
-      <div className="jogs-page__content jogs-page__content_popup">
-        <img src={bearFace} alt="bear" />
-        <Button handleClick={this.handleStartClick}>Let me in</Button>
+      <div className="jogs-page__content jogs-page__content_start-popup">
+        <div className="jogs-page__start-popup">
+          <Button handleClick={this.handleStartClick} white={this.props.isDesktop}>Let me in</Button>
+        </div>
       </div>
     );
   }

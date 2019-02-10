@@ -21,6 +21,10 @@ class Main extends React.Component {
     isMenuShow: PropTypes.bool,
   };
 
+  state = {
+    isDesktop: this.isDesktop()
+  };
+
   // ;;events --------------------------------------------------------------------------------------
 
   componentDidMount() {
@@ -40,10 +44,18 @@ class Main extends React.Component {
   // ;;events --------------------------------------------------------------------------------------
 
   handleCloseMenuPopupWhenResize = () => {
-    if (!(this.isDesktop() && this.props.isMenuShow)) return;
+    this.setState({
+      isDesktop: this.isDesktop()
+    }, () => {
+      if (!(this.isDesktop() && this.props.isMenuShow)) return;
 
-    this.props.dispatch(hideMenu());
+      this.props.dispatch(hideMenu());
+    });
   };
+
+  // ;;inner ---------------------------------------------------------------------------------------
+
+
 
   // ;;render --------------------------------------------------------------------------------------
 
@@ -55,7 +67,7 @@ class Main extends React.Component {
         </div>
         <div className="main__content">
           <Route path="/" exact>
-            <JogsPage />
+            <JogsPage isDesktop={this.state.isDesktop} />
           </Route>
 
           <Route path="/about/" component={About} />
