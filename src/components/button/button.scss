@@ -1,0 +1,19 @@
+.button {
+  border: 3px solid $pink;
+  padding: 0 30px;
+  height: 60px;
+  border-radius: 30px;
+  color: $pink;
+}
+
+.button_white {
+  border-color: $white;
+  color: $white;
+}
+
+.button__text {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 21px;
+  color: inherit;
+}
