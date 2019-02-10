@@ -33,6 +33,12 @@ class JogsPage extends React.Component {
 
   // ;;events --------------------------------------------------------------------------------------
 
+  handleCloseJogCreatePopup = () => {
+    this.setState({
+      isShowCreateJogPopup: false
+    });
+  };
+
   handleStartClick = () => {
     this.getToken();
   };
@@ -124,7 +130,12 @@ class JogsPage extends React.Component {
     return (
       <div className="jogs-page__content jogs-page__content_start-popup">
         <div className="jogs-page__start-popup">
-          <Button handleClick={this.handleStartClick} white={this.props.isDesktop}>Let me in</Button>
+          <Button
+            handleClick={this.handleStartClick}
+            white={this.props.isDesktop}
+          >
+            Let me in
+          </Button>
         </div>
       </div>
     );
@@ -135,7 +146,10 @@ class JogsPage extends React.Component {
 
     return (
       <div className="jogs-page__content">
-        <JogCreate handleUpdateJogs={this.handleUpdateJogs} />
+        <JogCreate
+          handleClose={this.handleCloseJogCreatePopup}
+          handleUpdateJogs={this.handleUpdateJogs}
+        />
       </div>
     );
   }

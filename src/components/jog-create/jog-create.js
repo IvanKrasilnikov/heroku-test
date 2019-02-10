@@ -7,7 +7,8 @@ import Button from "../button/button";
 
 class JogCreate extends React.Component {
   static propTypes = {
-    handleUpdateJogsList: PropTypes.func,
+    handleClose: PropTypes.bool,
+    handleUpdateJogs: PropTypes.func,
   };
 
   state = {
@@ -17,6 +18,10 @@ class JogCreate extends React.Component {
   };
 
   // ;;events --------------------------------------------------------------------------------------
+
+  handleCloseButtonClick = () => {
+    this.props.handleClose();
+  };
 
   handleDistanceChange = e => {
     this.changeInputValue("distance", e.target.value);
@@ -47,7 +52,7 @@ class JogCreate extends React.Component {
       }
     });
 
-    this.props.handleUpdateJogsList();
+    this.props.handleUpdateJogs();
   }
 
   changeInputValue(name, value) {
@@ -61,9 +66,15 @@ class JogCreate extends React.Component {
   render() {
     return (
       <div className="jog-create">
-        <label>
+        <button
+          className="jog-create__close-button"
+          onClick={this.handleCloseButtonClick}
+          type="button"
+        />
+        <label className="jog-create__field">
           <span className="jog-create__label-title">Distance</span>
           <input
+            className="jog-create__input"
             type="number"
             value={this.state.distance}
             onChange={this.handleDistanceChange}
@@ -71,24 +82,26 @@ class JogCreate extends React.Component {
             step={0.1}
           />
         </label>
-        <label>
+        <label className="jog-create__field">
           <span className="jog-create__label-title">Time</span>
           <input
+            className="jog-create__input"
             type="number"
             value={this.state.time}
             onChange={this.handleTimeChange}
             min={1}
           />
         </label>
-        <label>
+        <label className="jog-create__field">
           <span className="jog-create__label-title">Date</span>
           <input
+            className="jog-create__input"
             type="date"
             value={this.state.date}
             onChange={this.handleDateChange}
           />
         </label>
-        <Button handleClick={this.handleSaveButtonClick}>Save</Button>
+        <Button fullWidth handleClick={this.handleSaveButtonClick} white>Save</Button>
       </div>
     );
   }

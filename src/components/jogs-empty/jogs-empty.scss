@@ -8,6 +8,11 @@
   background-position: center 140px;
   background-size: 85px auto;
   background-repeat: no-repeat;
+
+  @media (min-width: $desktop) {
+    padding: 335px 0 40px;
+    background-size: 150px auto;
+  }
 }
 
 .jogs-empty__title {

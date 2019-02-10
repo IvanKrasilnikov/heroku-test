@@ -1,0 +1,67 @@
+.jog-create {
+  padding: 65px 35px 35px;
+  max-width: 500px;
+  border-radius: 30px;
+  position: relative;
+  background-color: $green;
+
+  @media (min-width: $desktop) {
+    padding: 100px 90px 45px;
+  }
+}
+
+.jog-create__close-button {
+  height: 17px;
+  width: 18px;
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-image: url(./images/cancel@2x.png);
+  background-position: center;
+  background-size: 100%;
+
+  @media (min-width: $desktop) {
+    height: 25px;
+    width: 27px;
+    top: 25px;
+    right: 25px;
+  }
+}
+
+.jog-create__field {
+  margin-bottom: 20px;
+  display: block;
+
+  @media (min-width: $desktop) {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.jog-create__field:last-of-type {
+  margin-bottom: 40px;
+
+  @media (min-width: $desktop) {
+    margin-bottom: 45px;
+  }
+}
+
+.jog-create__label-title {
+  margin-bottom: 6px;
+  display: block;
+  font-size: 13px;
+  color: $black-2;
+
+  @media (min-width: $desktop) {
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
+}
+
+.jog-create__input {
+  width: 235px;
+  display: block;
+}

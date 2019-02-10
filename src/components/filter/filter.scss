@@ -20,23 +20,6 @@
 }
 
 .filter__input {
-  margin: 0;
-  padding: 0;
-  border: 1px solid $grey-7;
-  border-radius: 10px;
-  height: 30px;
   width: 72px;
   display: inline-block;
-  background: none;
-  background-color: $white;
-  font-size: 13px;
-  font-family: inherit;
-  line-height: 1;
-  white-space: normal;
-  vertical-align: middle;
-  outline: 0;
-
-  &:focus {
-    outline: 0;
-  }
 }
