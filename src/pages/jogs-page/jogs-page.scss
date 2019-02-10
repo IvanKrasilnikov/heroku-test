@@ -14,6 +14,7 @@
 
 .jogs-page__content_start-popup {
   @media (min-width: $desktop) {
+    min-height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,7 +23,7 @@
 
 .jogs-page__start-popup {
   padding: 390px 0 40px;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   justify-content: center;
   background-image: url(./images/bearFace@2x.png);
@@ -32,6 +33,7 @@
 
   @media (min-width: $desktop) {
     padding: 280px 0 40px;
+    min-height: auto;
     height: auto;
     width: 500px;
     border-radius: 44px;
