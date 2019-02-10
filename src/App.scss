@@ -1,6 +1,11 @@
+@import "./stylesheets/variables/breakpoints";
 @import "./stylesheets/variables/colors";
 
 @import "./stylesheets/base";
 
-@import "./components/main/main";
+@import "./pages/jogs-page/jogs-page";
+
 @import "./components/header/header";
+@import "./components/jog/jog";
+@import "./components/main/main";
+@import "./components/navigation/navigation";
