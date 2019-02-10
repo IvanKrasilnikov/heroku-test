@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 class Button extends React.PureComponent {
   static propTypes = {
+    fullWidth: PropTypes.bool,
     handleClick: PropTypes.func,
     white: PropTypes.bool
   };
@@ -21,6 +22,7 @@ class Button extends React.PureComponent {
       <button
         className={classNames({
           button: true,
+          "button_full-width": this.props.fullWidth,
           button_white: this.props.white
         })}
         onClick={this.handleClick}

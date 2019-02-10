@@ -4,6 +4,12 @@
   border: 3px solid $pink;
   border-radius: 30px;
   color: $pink;
+  text-align: center;
+}
+
+.button_full-width {
+  width: 100%;
+  display: block;
 }
 
 .button_white {
