@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { toggleFilter, toggleMenu } from "../../redux/actions";
 
 // Configs
-import routes from "../../configs/routes";
+import { routes } from "../../configs";
 
 // Images
 import logo from "../../images/logo@2x.png";

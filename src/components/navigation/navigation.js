@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { Link, withRouter } from "react-router-dom";
 
 // Configs
-import routes from "../../configs/routes";
+import { routes } from "../../configs";
 
 class Navigation extends React.Component {
   static propTypes = {
